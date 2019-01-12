@@ -2,6 +2,7 @@ package Database.Entity;
 
 import org.w3c.dom.Text;
 
+import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
@@ -9,13 +10,14 @@ import androidx.room.PrimaryKey;
 @Entity(tableName = "course")
 public class CourseEntity {
 
-    @PrimaryKey(autoGenerate = true)
-    public int id;
+
 
     @ColumnInfo(name = "course_name")
     public String name;
 
 
+    @PrimaryKey
+    @NonNull
     @ColumnInfo(name = "course_no")
     public String no;
 
@@ -35,8 +37,7 @@ public class CourseEntity {
     @ColumnInfo(name = "note")
     public String note;
 
-    public CourseEntity(int id, String name, String no, String teacher, String day, String hour, int reminder, String note) {
-        this.id = id;
+    public CourseEntity( String name, String no, String teacher, String day, String hour, int reminder, String note) {
         this.name = name;
         this.no = no;
         this.teacher = teacher;
@@ -44,14 +45,6 @@ public class CourseEntity {
         this.hour = hour;
         this.reminder = reminder;
         this.note = note;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getName() {

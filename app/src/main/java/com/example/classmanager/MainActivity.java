@@ -49,8 +49,6 @@ public class MainActivity extends AppCompatActivity {
                 String day = courses.getDay();
                 String hour = courses.getHour();
                 String note = courses.getNote();
-                TextView T1 = (TextView)findViewById(R.id.CName);
-                T1.setText(Cname);
                 Intent intent = new Intent(MainActivity.this,ClassDetailActivity.class);
                 intent.putExtra("E1",Cname);
                 intent.putExtra("E2",Cno);
@@ -75,10 +73,7 @@ public class MainActivity extends AppCompatActivity {
     private void getCourse(){
         AppDatabase db = AppDatabase.getCourseInstance();
         CourseDao courseDao = db.courseDao();
-        courseDao.getAll();
-/*        mDisposable.add(courseDao.getAll()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe());*/
+        coursesList.addAll(courseDao.getAll());
+
     }
 }

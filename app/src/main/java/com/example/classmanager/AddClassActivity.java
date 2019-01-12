@@ -12,6 +12,7 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Switch;
+import android.widget.Toast;
 
 import Database.AppDatabase;
 import Database.Entity.CourseEntity;
@@ -30,14 +31,16 @@ public class AddClassActivity extends AppCompatActivity {
     private Spinner Week;
     private Button AddCourse;
     private Button CancelAdd;
+    private Switch reminder;
+    private int remindme;
     private String weekday;
     private String hour;
     private String newName;
-    private String newNo;
     private String newTeacher;
-    private Switch reminder;
-    private int remindme;
+    private String newNo;
     private CompositeDisposable mDisposable = new CompositeDisposable();
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,13 +53,17 @@ public class AddClassActivity extends AppCompatActivity {
         Week = (Spinner)findViewById(R.id.weekday_edit);
         Time = (Spinner)findViewById(R.id.hour_edit);
         reminder = (Switch)findViewById(R.id.reminder);
+
+
+        AppDatabase database = AppDatabase.getCourseInstance();
+        final CourseDao courseDao = database.courseDao();
+
+
         Week.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 weekday = (String)Week.getSelectedItem();
             }
-
-
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
 
@@ -67,12 +74,12 @@ public class AddClassActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 hour = (String)Time.getSelectedItem();
             }
-
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
 
             }
         });
+
         reminder.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -86,24 +93,20 @@ public class AddClassActivity extends AppCompatActivity {
                 }
             }
         });
-        newName = CNameEdit.getText().toString();
-        newNo = CNoEdit.getText().toString();
-        newTeacher = TeacherEdit.getText().toString();
+
 
         AddCourse = (Button)findViewById(R.id.addcourse_button);
         AddCourse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AppDatabase database = AppDatabase.getCourseInstance();
-                CourseEntity courseEntity = new CourseEntity(1,newName,newNo,newTeacher,weekday,hour,remindme,null);
-                CourseDao courseDao = database.courseDao();
+                newName = CNameEdit.getText().toString();
+                newNo = CNoEdit.getText().toString();
+                newTeacher = TeacherEdit.getText().toString();
+                CourseEntity courseEntity = new CourseEntity(newName,newNo,newTeacher,weekday,hour,remindme,null);
                 courseDao.add(courseEntity);
                 Intent intent = new Intent(AddClassActivity.this,MainActivity.class);
                 startActivity(intent);
-               /* mDisposable.add(courseDao.add(courseEntity)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe());*/
+                Toast.makeText(AddClassActivity.this,weekday,Toast.LENGTH_SHORT).show();
             }
         });
     }

@@ -28,12 +28,14 @@ public class DetailFragment extends Fragment {
         TextView ShowCName = (TextView)view.findViewById(R.id.show_name);
         TextView ShowCNo = (TextView)view.findViewById(R.id.show_no);
         TextView ShowTeacher = (TextView)view.findViewById(R.id.show_teacher);
-        TextView ShowTime = (TextView)view.findViewById(R.id.show_time);
+        TextView ShowDay = (TextView)view.findViewById(R.id.show_day);
+        TextView ShowHour = (TextView)view.findViewById(R.id.show_time);
         Bundle bundle = getArguments();
         ShowCName.setText(bundle.getString("E1"));
         ShowCNo.setText(bundle.getString("E2"));
         ShowTeacher.setText(bundle.getString("E3"));
-        ShowTime.setText(bundle.getString("E4"));
+        ShowDay.setText(bundle.getString("E4"));
+        ShowHour.setText(bundle.getString("E5"));
         return view;
     }
     @Override
