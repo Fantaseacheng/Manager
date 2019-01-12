@@ -1,21 +1,16 @@
 package com.example.classmanager;
 
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.net.Uri;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
 public class NoteFragment extends Fragment {
@@ -52,14 +47,7 @@ public class NoteFragment extends Fragment {
                 wancheng.setVisibility(View.INVISIBLE);
             }
         });
-        SharedPreferences pref = this.getActivity().getSharedPreferences("con",Context.MODE_PRIVATE);
-        String note = editText.getText().toString();
-        SharedPreferences.Editor editor = pref.edit();
-        editor.putString("note",note);
-        editor.commit();
-        String note2 =pref.getString("note","");
-        Toast.makeText(getContext(),note2,Toast.LENGTH_SHORT).show();
-        editText.setText(note2);
+
         return view;
     }
     @Override

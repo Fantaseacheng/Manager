@@ -12,22 +12,22 @@ import com.example.classmanager.R;
 import java.util.List;
 
 import Bean.Courses;
+import Database.Entity.CourseEntity;
 
-public class CourseAdapter extends ArrayAdapter<Courses> {
-    private int resourceId;
-    private TextView CourseName;
-    public CourseAdapter(Context context, int textViewResourceId, List<Courses> objects)
+public class CourseAdapter extends ArrayAdapter<CourseEntity> {
+    private int resourseId;
+
+    public CourseAdapter(Context context,int textViewResourceId,List<CourseEntity>objects)
     {
         super(context,textViewResourceId,objects);
-        resourceId = textViewResourceId;
-    }
-    public View getView(int position, View convertView, ViewGroup parent)
-    {
-        Courses course = getItem(position);
-        View view = LayoutInflater.from(getContext()).inflate(resourceId,parent,false);
-        CourseName = (TextView)view.findViewById(R.id.CName);
-        CourseName.setText(course.getCourseName());
-        return view;
+        resourseId = textViewResourceId;
     }
 
+    public View getView(int position,View convertView,ViewGroup parent){
+        CourseEntity courseEntity = getItem(position);
+        View view = LayoutInflater.from(getContext()).inflate(resourseId,parent,false);
+        TextView CName = (TextView)view.findViewById(R.id.CName);
+        CName.setText(courseEntity.getName());
+        return view;
+    }
 }

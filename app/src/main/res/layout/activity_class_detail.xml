@@ -14,10 +14,10 @@
 
         />
     
-    <android.support.design.widget.BottomNavigationView
+    <com.google.android.material.bottomnavigation.BottomNavigationView
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:id="@+id/menubar"
         app:menu="@menu/menu"
-        android:layout_alignParentBottom="true"></android.support.design.widget.BottomNavigationView>
+        android:layout_alignParentBottom="true"></com.google.android.material.bottomnavigation.BottomNavigationView>
 </RelativeLayout>

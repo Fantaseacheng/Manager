@@ -1,6 +1,9 @@
 package com.example.classmanager;
 
-import android.support.v7.app.AppCompatActivity;
+import Database.dao.CourseDao;
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -9,6 +12,13 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Switch;
+
+import Database.AppDatabase;
+import Database.Entity.CourseEntity;
+import io.reactivex.Scheduler;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.schedulers.Schedulers;
 
 
 public class AddClassActivity extends AppCompatActivity {
@@ -27,7 +37,7 @@ public class AddClassActivity extends AppCompatActivity {
     private String newTeacher;
     private Switch reminder;
     private int remindme;
-
+    private CompositeDisposable mDisposable = new CompositeDisposable();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,5 +90,22 @@ public class AddClassActivity extends AppCompatActivity {
         newNo = CNoEdit.getText().toString();
         newTeacher = TeacherEdit.getText().toString();
 
+        AddCourse = (Button)findViewById(R.id.addcourse_button);
+        AddCourse.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AppDatabase database = AppDatabase.getCourseInstance();
+                CourseEntity courseEntity = new CourseEntity(1,newName,newNo,newTeacher,weekday,hour,remindme,null);
+                CourseDao courseDao = database.courseDao();
+                courseDao.add(courseEntity);
+                Intent intent = new Intent(AddClassActivity.this,MainActivity.class);
+                startActivity(intent);
+               /* mDisposable.add(courseDao.add(courseEntity)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe());*/
+            }
+        });
     }
+
 }

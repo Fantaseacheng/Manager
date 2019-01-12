@@ -74,11 +74,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
-            android:textSize="20sp"
+            android:textSize="15sp"
             android:layout_weight="1"
             android:layout_marginTop="40dp"
             android:text="上 课 时 间 :"
             />
+        <TextView
+            android:id="@+id/show_day"
+            android:layout_width="10dp"
+            android:layout_marginTop="40dp"
+            android:layout_weight="3"
+            android:textSize="20sp"
+            android:layout_height="wrap_content" />
         <TextView
             android:id="@+id/show_time"
             android:layout_width="10dp"
