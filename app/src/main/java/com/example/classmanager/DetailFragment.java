@@ -43,7 +43,7 @@ public class DetailFragment extends Fragment {
         ShowDay.setText(bundle.getString("E4"));
         ShowHour.setText(bundle.getString("E5"));
         String reminder = bundle.getString("E7");
-        if(reminder.equals("1"))
+        if("1".equals(reminder))
         {
             ShowRemind.setText("已设置提醒");
         }

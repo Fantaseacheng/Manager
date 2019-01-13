@@ -55,9 +55,8 @@ public class AddClassActivity extends AppCompatActivity {
         reminder = (Switch)findViewById(R.id.reminder);
 
 
-        AppDatabase database = AppDatabase.getCourseInstance();
+        AppDatabase database = AppDatabase.getInstance();
         final CourseDao courseDao = database.courseDao();
-
 
         Week.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -87,9 +86,9 @@ public class AddClassActivity extends AppCompatActivity {
                 {
                     remindme = "1";
                 }
-                else
+                else if(!isChecked)
                 {
-                    remindme = "0";
+                    remindme = "2";
                 }
             }
         });
@@ -106,7 +105,6 @@ public class AddClassActivity extends AppCompatActivity {
                 courseDao.add(courseEntity);
                 Intent intent = new Intent(AddClassActivity.this,MainActivity.class);
                 startActivity(intent);
-                Toast.makeText(AddClassActivity.this,weekday,Toast.LENGTH_SHORT).show();
             }
         });
     }

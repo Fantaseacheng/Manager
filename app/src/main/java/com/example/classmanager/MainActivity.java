@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void getCourse(){
-        AppDatabase db = AppDatabase.getCourseInstance();
+        AppDatabase db = AppDatabase.getInstance();
         CourseDao courseDao = db.courseDao();
         coursesList.addAll(courseDao.getAll());
 

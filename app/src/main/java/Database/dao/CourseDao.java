@@ -23,6 +23,9 @@ public interface CourseDao {
     @Insert
     void add(CourseEntity entity);
 
+    @Query("update course set note = :note where course_no = :no")
+    void addnote(String no,String note);
+
     @Delete
     void delete(CourseEntity entity);
 

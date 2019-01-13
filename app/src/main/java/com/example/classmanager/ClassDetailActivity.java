@@ -39,8 +39,9 @@ public class ClassDetailActivity extends AppCompatActivity {
         bundle.putString("E3",Teacher);
         bundle.putString("E4",Day);
         bundle.putString("E5",Hour);
-        bundle.putString("E7",reminder);
         bundle.putString("E6",note);
+        bundle.putString("E7",reminder);
+
 
         view.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
