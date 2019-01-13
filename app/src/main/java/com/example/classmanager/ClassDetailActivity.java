@@ -24,15 +24,24 @@ public class ClassDetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_class_detail);
         BottomNavigationView view = findViewById(R.id.menubar);
         Intent intent = getIntent();
+
         String CName = intent.getStringExtra("E1");
         String CNO = intent.getStringExtra("E2");
         String Teacher =intent.getStringExtra("E3");
-        String Time = intent.getStringExtra("E4");
+        String Day = intent.getStringExtra("E4");
+        String Hour = intent.getStringExtra("E5");
+        String note = intent.getStringExtra("E6");
+        String reminder = intent.getStringExtra("E7");
+
         final Bundle bundle = new Bundle();
         bundle.putString("E1",CName);
         bundle.putString("E2",CNO);
         bundle.putString("E3",Teacher);
-        bundle.putString("E4",Time);
+        bundle.putString("E4",Day);
+        bundle.putString("E5",Hour);
+        bundle.putString("E7",reminder);
+        bundle.putString("E6",note);
+
         view.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
@@ -66,6 +75,7 @@ public class ClassDetailActivity extends AppCompatActivity {
 
             case R.id.navigation_note:
                 fragment = NoteFragment.newInstance();
+                fragment.setArguments(bundle);
                 break;
 
 

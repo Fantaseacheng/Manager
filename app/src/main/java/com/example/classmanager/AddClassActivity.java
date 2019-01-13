@@ -32,7 +32,7 @@ public class AddClassActivity extends AppCompatActivity {
     private Button AddCourse;
     private Button CancelAdd;
     private Switch reminder;
-    private int remindme;
+    private String remindme;
     private String weekday;
     private String hour;
     private String newName;
@@ -85,11 +85,11 @@ public class AddClassActivity extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked)
                 {
-                    remindme = 1;
+                    remindme = "1";
                 }
                 else
                 {
-                    remindme = 0;
+                    remindme = "0";
                 }
             }
         });

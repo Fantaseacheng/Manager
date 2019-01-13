@@ -49,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
                 String day = courses.getDay();
                 String hour = courses.getHour();
                 String note = courses.getNote();
+                String remind = courses.getReminder();
                 Intent intent = new Intent(MainActivity.this,ClassDetailActivity.class);
                 intent.putExtra("E1",Cname);
                 intent.putExtra("E2",Cno);
@@ -56,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
                 intent.putExtra("E4",day);
                 intent.putExtra("E5",hour);
                 intent.putExtra("E6",note);
+                intent.putExtra("E7",remind);
                 startActivity(intent);
             }
         });

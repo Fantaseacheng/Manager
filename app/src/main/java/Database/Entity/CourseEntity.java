@@ -32,12 +32,12 @@ public class CourseEntity {
     public String hour;
 
     @ColumnInfo(name = "reminder")
-    public int reminder;
+    public String reminder;
 
     @ColumnInfo(name = "note")
     public String note;
 
-    public CourseEntity( String name, String no, String teacher, String day, String hour, int reminder, String note) {
+    public CourseEntity( String name, String no, String teacher, String day, String hour, String reminder, String note) {
         this.name = name;
         this.no = no;
         this.teacher = teacher;
@@ -87,11 +87,11 @@ public class CourseEntity {
         this.hour = hour;
     }
 
-    public int getReminder() {
+    public String getReminder() {
         return reminder;
     }
 
-    public void setReminder(int reminder) {
+    public void setReminder(String reminder) {
         this.reminder = reminder;
     }
 

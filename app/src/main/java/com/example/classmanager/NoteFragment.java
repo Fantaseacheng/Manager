@@ -24,10 +24,14 @@ public class NoteFragment extends Fragment {
                              Bundle savedInstanceState) {
         LayoutInflater lf = getActivity().getLayoutInflater();
         View view = lf.inflate(R.layout.fragment_note, container, false);
+
         ImageButton addButton = (ImageButton)view.findViewById(R.id.add_note);
         final ImageButton checkButton = (ImageButton)view.findViewById(R.id.check);
         final TextView wancheng = (TextView)view.findViewById(R.id.wancheng);
         final EditText editText = (EditText)view.findViewById(R.id.note);
+        Bundle bundle = getArguments();
+        String note = bundle.getString("E6");
+        editText.setText(note);
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
