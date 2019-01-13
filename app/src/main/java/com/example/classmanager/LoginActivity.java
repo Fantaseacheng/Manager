@@ -69,6 +69,9 @@ public class LoginActivity extends AppCompatActivity {
                     }
                     editor.apply();
                     Intent intent = new Intent(LoginActivity.this,MainActivity.class);
+                    intent.putExtra("Ex1",userDao.get(getAccount).getAccount());
+                    intent.putExtra("Ex2",userDao.get(getAccount).getStu_name());
+                    intent.putExtra("Ex3",userDao.get(getAccount).getStu_no());
                     startActivity(intent);
                 }
                 else{

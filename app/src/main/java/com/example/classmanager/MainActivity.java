@@ -7,11 +7,15 @@ import android.content.Intent;
 import Database.dao.CourseDao;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
 
     private List<CourseEntity> coursesList= new ArrayList<>();
     private ImageButton Add;
+    private NavigationView navigationView;
     private CompositeDisposable mDisposable = new CompositeDisposable();
 
     @Override
@@ -61,6 +66,8 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+
         Add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -68,6 +75,37 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        Intent getintent = getIntent();
+        final String UserAccount = getintent.getStringExtra("Ex1");
+        final String UserName = getintent.getStringExtra("Ex2");
+        final String UserNo = getintent.getStringExtra("Ex3");
+        navigationView = (NavigationView)findViewById(R.id.nav);
+        View headerView = navigationView.getHeaderView(0);
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected( MenuItem item) {
+                switch (item.getItemId()){
+                    case R.id.favorite:
+                        Intent intent1 = new Intent();
+                        intent1.setClass(MainActivity.this, InfoActivity.class);
+                        intent1.putExtra("X1",UserAccount);
+                        intent1.putExtra("X2",UserName);
+                        intent1.putExtra("X3",UserNo);
+                        startActivity(intent1);
+                        break;
+                    case R.id.quit:
+                        Intent intent2 = new Intent();
+                        intent2.setClass(MainActivity.this, LoginActivity.class);
+                        startActivity(intent2);
+                        break;
+
+                }
+
+                return true;
+            }
+        });
+
     }
 
 

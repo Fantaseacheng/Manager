@@ -6,10 +6,9 @@
             android:id="@+id/favorite"
             android:checkable="true"
             android:title="    个人资料"/>
-
     </group>
     <item
-        android:id="@+id/wallet"
+        android:id="@+id/quit"
         android:title="    退出"/>
 
 </menu>
