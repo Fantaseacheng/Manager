@@ -102,4 +102,18 @@ public class CourseEntity {
     public void setNote(String note) {
         this.note = note;
     }
+
+
+    @Override
+    public String toString() {
+        return "CourseEntity{" +
+                "name='" + name + '\'' +
+                ", no='" + no + '\'' +
+                ", teacher='" + teacher + '\'' +
+                ", day='" + day + '\'' +
+                ", hour='" + hour + '\'' +
+                ", reminder='" + reminder + '\'' +
+                ", note='" + note + '\'' +
+                '}';
+    }
 }

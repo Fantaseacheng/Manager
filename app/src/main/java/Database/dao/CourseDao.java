@@ -17,14 +17,14 @@ public interface CourseDao {
     @Query("select * from course")
     List<CourseEntity> getAll();
 
-    @Query("select * from course where course_name = :name and course_no = :no")
-    Flowable<CourseEntity> getOne(String name, String no);
+    @Query("select * from course where course_no = :no")
+    CourseEntity getOne(String no);
 
     @Insert
     void add(CourseEntity entity);
 
-    @Query("update course set note = :note where course_no = :no")
-    void addnote(String no,String note);
+    @Update
+    void addnote(CourseEntity entity);
 
     @Delete
     void delete(CourseEntity entity);

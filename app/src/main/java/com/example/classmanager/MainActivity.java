@@ -7,6 +7,7 @@ import android.content.Intent;
 import Database.dao.CourseDao;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -30,6 +31,7 @@ import io.reactivex.schedulers.Schedulers;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static final String TAG = MainActivity.class.getSimpleName();
     private List<CourseEntity> coursesList= new ArrayList<>();
     private ImageButton Add;
     private NavigationView navigationView;
@@ -48,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 CourseEntity courses = coursesList.get(position);
+                Log.e(TAG,courses.toString() );
                 String Cname = courses.getName();
                 String Cno = courses.getNo();
                 String Teacher = courses.getTeacher();

@@ -46,7 +46,6 @@ public class RegisterActivity extends AppCompatActivity {
                 newNo = edit_no.getText().toString();
                 UserEntity entity = new UserEntity(newAcc,newPass,newNo,newName);
                 userDao.add(entity);
-                Toast.makeText(RegisterActivity.this,newAcc,Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(RegisterActivity.this,LoginActivity.class);
                 startActivity(intent);
             }

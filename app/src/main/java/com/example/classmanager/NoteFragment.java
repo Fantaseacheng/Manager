@@ -3,6 +3,7 @@ package com.example.classmanager;
 import android.os.Bundle;
 
 import Database.AppDatabase;
+import Database.Entity.CourseEntity;
 import Database.dao.CourseDao;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -34,12 +35,11 @@ public class NoteFragment extends Fragment {
         final TextView wancheng = (TextView)view.findViewById(R.id.wancheng);
         final EditText editText = (EditText)view.findViewById(R.id.note);
 
-        Bundle bundle = getArguments();
-        final String no = bundle.getString("E2");
-        final String note = bundle.getString("E6");
-        editText.setText(note);
+        final Bundle bundle = getArguments();
+        String no = bundle.getString("E2");
         AppDatabase database = AppDatabase.getInstance();
         final CourseDao courseDao = database.courseDao();
+        editText.setText(courseDao.getOne(no).getNote());
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -54,7 +54,10 @@ public class NoteFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 newNote = editText.getText().toString();
-                courseDao.addnote(no,newNote);
+                CourseEntity entity = new CourseEntity(bundle.getString("E1"),bundle.getString("E2"),
+                        bundle.getString("E3"),bundle.getString("E4"),
+                        bundle.getString("E5"),bundle.getString("E7"),newNote);
+                courseDao.addnote(entity);
                 editText.setFocusable(false);
                 editText.setFocusableInTouchMode(false);
                 checkButton.setVisibility(View.INVISIBLE);

@@ -1,6 +1,9 @@
 package com.example.classmanager;
 
 import android.content.Intent;
+
+import Database.AppDatabase;
+import Database.dao.CourseDao;
 import androidx.annotation.NonNull;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import androidx.fragment.app.Fragment;
@@ -24,6 +27,9 @@ public class ClassDetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_class_detail);
         BottomNavigationView view = findViewById(R.id.menubar);
         Intent intent = getIntent();
+
+        AppDatabase database = AppDatabase.getInstance();
+        CourseDao courseDao = database.courseDao();
 
         String CName = intent.getStringExtra("E1");
         String CNO = intent.getStringExtra("E2");
