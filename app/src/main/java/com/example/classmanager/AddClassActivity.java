@@ -101,9 +101,12 @@ public class AddClassActivity extends AppCompatActivity {
                 newName = CNameEdit.getText().toString();
                 newNo = CNoEdit.getText().toString();
                 newTeacher = TeacherEdit.getText().toString();
-                CourseEntity courseEntity = new CourseEntity(newName,newNo,newTeacher,weekday,hour,remindme,null);
+                Intent i = getIntent();
+                String stuNo =i.getStringExtra("X1");
+                CourseEntity courseEntity = new CourseEntity(newName,newNo,newTeacher,weekday,hour,remindme,null,stuNo);
                 courseDao.add(courseEntity);
                 Intent intent = new Intent(AddClassActivity.this,MainActivity.class);
+                intent.putExtra("Ex3",stuNo);
                 startActivity(intent);
             }
         });

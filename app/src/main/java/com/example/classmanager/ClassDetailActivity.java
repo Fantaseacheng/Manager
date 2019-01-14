@@ -38,6 +38,7 @@ public class ClassDetailActivity extends AppCompatActivity {
         String Hour = intent.getStringExtra("E5");
         String note = intent.getStringExtra("E6");
         String reminder = intent.getStringExtra("E7");
+        String stuNo =intent.getStringExtra("E8");
 
         final Bundle bundle = new Bundle();
         bundle.putString("E1",CName);
@@ -47,6 +48,7 @@ public class ClassDetailActivity extends AppCompatActivity {
         bundle.putString("E5",Hour);
         bundle.putString("E6",note);
         bundle.putString("E7",reminder);
+        bundle.putString("E8",stuNo);
 
 
         view.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {

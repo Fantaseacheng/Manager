@@ -56,7 +56,7 @@ public class NoteFragment extends Fragment {
                 newNote = editText.getText().toString();
                 CourseEntity entity = new CourseEntity(bundle.getString("E1"),bundle.getString("E2"),
                         bundle.getString("E3"),bundle.getString("E4"),
-                        bundle.getString("E5"),bundle.getString("E7"),newNote);
+                        bundle.getString("E5"),bundle.getString("E7"),newNote,bundle.getString("E8"));
                 courseDao.addnote(entity);
                 editText.setFocusable(false);
                 editText.setFocusableInTouchMode(false);

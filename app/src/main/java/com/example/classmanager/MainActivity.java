@@ -76,8 +76,10 @@ public class MainActivity extends AppCompatActivity {
         PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, intent, 0);
         manager.setRepeating(AlarmManager.RTC_WAKEUP, current + 5000, 60000, pendingIntent);
 
-
-        getCourse();
+        Intent i = getIntent();
+        final String stuNo = i.getStringExtra("Ex3");
+        Toast.makeText(MainActivity.this,stuNo,Toast.LENGTH_SHORT).show();
+        getCourse(stuNo);
         CourseAdapter adapter = new CourseAdapter(MainActivity.this,R.layout.course_list,coursesList);
         ListView listView = (ListView)findViewById(R.id.list_view);
         Add = (ImageButton)findViewById(R.id.add_course);
@@ -102,6 +104,7 @@ public class MainActivity extends AppCompatActivity {
                 intent.putExtra("E5",hour);
                 intent.putExtra("E6",note);
                 intent.putExtra("E7",remind);
+                intent.putExtra("E8",stuNo);
                 startActivity(intent);
             }
         });
@@ -111,6 +114,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this,AddClassActivity.class);
+                intent.putExtra("X1",stuNo);
                 startActivity(intent);
             }
         });
@@ -149,10 +153,10 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-    private void getCourse(){
+    private void getCourse(String s) {
         AppDatabase db = AppDatabase.getInstance();
         CourseDao courseDao = db.courseDao();
-        coursesList.addAll(courseDao.getAll());
+        coursesList.addAll(courseDao.getAll(s));
 
     }
 }

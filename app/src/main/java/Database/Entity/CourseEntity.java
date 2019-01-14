@@ -15,6 +15,8 @@ public class CourseEntity {
     @ColumnInfo(name = "course_name")
     public String name;
 
+    @ColumnInfo(name = "student_no")
+    public String stuNo;
 
     @PrimaryKey
     @NonNull
@@ -37,7 +39,7 @@ public class CourseEntity {
     @ColumnInfo(name = "note")
     public String note;
 
-    public CourseEntity( String name, String no, String teacher, String day, String hour, String reminder, String note) {
+    public CourseEntity( String name, String no, String teacher, String day, String hour, String reminder, String note,String stuNo) {
         this.name = name;
         this.no = no;
         this.teacher = teacher;
@@ -45,6 +47,7 @@ public class CourseEntity {
         this.hour = hour;
         this.reminder = reminder;
         this.note = note;
+        this.stuNo = stuNo;
     }
 
     public String getName() {
@@ -103,6 +106,13 @@ public class CourseEntity {
         this.note = note;
     }
 
+    public String getStuNo() {
+        return stuNo;
+    }
+
+    public void setStuNo(String stuNo) {
+        this.stuNo = stuNo;
+    }
 
     @Override
     public String toString() {
