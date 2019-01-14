@@ -1,9 +1,12 @@
 package com.example.classmanager;
 
+import android.app.AlarmManager;
 import android.app.Application;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 
+import Alarm.AlarmReceiver;
 import Database.dao.CourseDao;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
@@ -41,6 +44,39 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+/*
+        private static final int INTERVAL = 1000 * 60 * 60 * 24;// 24h
+
+//...
+
+
+        Intent intent = new Intent(context, RequestAlarmReceiver.class);
+        PendingIntent sender = PendingIntent.getBroadcast(context,
+                REQUEST_CODE, intent, PendingIntent.FLAG_CANCEL_CURRENT);
+
+        // Schedule the alarm!
+        AlarmManager am = (AlarmManager) context
+                .getSystemService(Context.ALARM_SERVICE);
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.HOUR_OF_DAY, 21);
+        calendar.set(Calendar.MINUTE, 30);
+        calendar.set(Calendar.SECOND, 10);
+        calendar.set(Calendar.MILLISECOND, 0);
+
+        am.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
+                INTERVAL, sender);
+*/
+
+        AlarmManager manager = (AlarmManager) getSystemService(ALARM_SERVICE);
+        long current = System.currentTimeMillis();
+        Intent intent = new Intent();
+        intent.setAction("action.alarm");
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, intent, 0);
+        manager.setRepeating(AlarmManager.RTC_WAKEUP, current + 5000, 60000, pendingIntent);
+
+
         getCourse();
         CourseAdapter adapter = new CourseAdapter(MainActivity.this,R.layout.course_list,coursesList);
         ListView listView = (ListView)findViewById(R.id.list_view);

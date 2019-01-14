@@ -11,7 +11,7 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.room.Database;
 
-@Database(entities = {CourseEntity.class,UserEntity.class}, version = 1)
+@Database(entities = {CourseEntity.class,UserEntity.class}, version = 1,exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
     public abstract CourseDao courseDao();
     public abstract UserDao userDao();
