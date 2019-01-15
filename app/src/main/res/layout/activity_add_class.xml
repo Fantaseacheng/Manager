@@ -6,7 +6,18 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".AddClassActivity">
-
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@color/colorPureBlue">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="120dp"
+            android:text="添加课程"
+            android:textSize="30dp"/>
+    </LinearLayout>
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
@@ -113,6 +124,7 @@
             android:textOn="当然"
             android:textOff="算了"/>
     </RelativeLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -120,17 +132,20 @@
 
         <Button
             android:id="@+id/addcourse_button"
-            android:layout_width="wrap_content"
+            android:layout_width="80dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_marginTop="20dp"
+            android:layout_marginLeft="60dp"
+            android:layout_marginTop="50dp"
+            android:background="@drawable/btn_blue"
             android:text=" 添 加 " />
+
         <Button
             android:id="@+id/cancel_add"
-            android:layout_width="wrap_content"
+            android:layout_width="80dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_marginTop="20dp"
+            android:layout_marginLeft="80dp"
+            android:layout_marginTop="50dp"
+            android:background="@drawable/btn_blue"
             android:text=" 取 消 " />
 
     </LinearLayout>

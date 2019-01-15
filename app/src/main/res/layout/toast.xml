@@ -23,9 +23,9 @@
             android:gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="30dp"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="20dp"
             android:textSize="13sp"
             android:textColor="#fff"
-            android:text="课程已删除" />
+            android:text="课程已删" />
     </LinearLayout>
 </RelativeLayout>

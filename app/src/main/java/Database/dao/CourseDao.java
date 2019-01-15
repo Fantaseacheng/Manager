@@ -2,7 +2,6 @@ package Database.dao;
 
 import java.util.List;
 
-import Bean.Courses;
 import Database.Entity.CourseEntity;
 import androidx.room.Dao;
 import androidx.room.Delete;

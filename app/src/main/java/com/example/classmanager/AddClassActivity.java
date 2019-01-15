@@ -3,6 +3,7 @@ package com.example.classmanager;
 import Database.dao.CourseDao;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -22,7 +23,7 @@ import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.schedulers.Schedulers;
 
 
-public class AddClassActivity extends AppCompatActivity {
+public class AddClassActivity extends Activity {
 
     private EditText CNameEdit;
     private EditText CNoEdit;

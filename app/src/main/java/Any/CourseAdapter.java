@@ -11,7 +11,6 @@ import com.example.classmanager.R;
 
 import java.util.List;
 
-import Bean.Courses;
 import Database.Entity.CourseEntity;
 
 public class CourseAdapter extends ArrayAdapter<CourseEntity> {
