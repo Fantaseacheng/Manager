@@ -75,10 +75,12 @@ public class DetailFragment extends Fragment {
             public void onClick(View v) {
                 CourseEntity entity = new CourseEntity(bundle.getString("E1"),bundle.getString("E2"),
                         bundle.getString("E3"),bundle.getString("E4"),
-                        bundle.getString("E5"),bundle.getString("E7"),bundle.getString("E6"),bundle.getString("E8"));
+                        bundle.getString("E5"),bundle.getString("E7"),
+                        bundle.getString("E6"),bundle.getString("E8"));
+                String No = bundle.getString("E8");
                 courseDao.delete(entity);
                 View toastView =LayoutInflater.from(getActivity()).inflate(R.layout.toast, null);
-                LinearLayout relativeLayout = (LinearLayout)toastView.findViewById(R.id.toast_linear);
+                LinearLayout relativeLayout = toastView.findViewById(R.id.toast_linear);
                 PxUntil pxUntil = new PxUntil();
                 RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams((int)pxUntil.dpToPx(getActivity(), 130), (int)pxUntil.dpToPx(getActivity(), 130));
                 relativeLayout.setLayoutParams(layoutParams);
@@ -90,6 +92,7 @@ public class DetailFragment extends Fragment {
                 toast.setView(toastView);
                 toast.show();
                 Intent i = new Intent(getActivity(),MainActivity.class);
+                i.putExtra("Ex3",No);
                 startActivity(i);
             }
         });

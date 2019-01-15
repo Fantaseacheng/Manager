@@ -55,11 +55,9 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
         pi=PendingIntent.getBroadcast(this,0,getMsgIntent(),0);
         time=System.currentTimeMillis();
         am= (AlarmManager) getSystemService(ALARM_SERVICE);
-
 
         Intent i = getIntent();
         final String stuNo = i.getStringExtra("Ex3");
@@ -114,14 +112,12 @@ public class MainActivity extends Activity {
                         alarm_minute = 10;
                         break;
                 }
-                setAlarm(alarm_day,alarm_hour,alarm_minute);
-                Log.e(TAG,String.valueOf(alarm_day));
-                Log.e(TAG,String.valueOf(alarm_hour));
-                Log.e(TAG,String.valueOf(alarm_minute));
+                if(("1").equals(s.getReminder())) {
+                    setAlarm(alarm_day, alarm_hour, alarm_minute);
+                }
             }
 
         }
-
 
         CourseAdapter adapter = new CourseAdapter(MainActivity.this,R.layout.course_list,coursesList);
         ListView listView = findViewById(R.id.list_view);
@@ -166,7 +162,7 @@ public class MainActivity extends Activity {
         final String UserAccount = getintent.getStringExtra("Ex1");
         final String UserName = getintent.getStringExtra("Ex2");
         final String UserNo = getintent.getStringExtra("Ex3");
-        navigationView = (NavigationView)findViewById(R.id.nav);
+        navigationView = findViewById(R.id.nav);
         View headerView = navigationView.getHeaderView(0);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
