@@ -28,11 +28,11 @@ public class RegisterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-        edit_acc = (EditText)findViewById(R.id.acc);
-        edit_pass = (EditText)findViewById(R.id.pass);
-        edit_name = (EditText)findViewById(R.id.edit_stuName);
-        edit_no = (EditText)findViewById(R.id.edit_stuNo);
-        reg = (Button)findViewById(R.id.reg);
+        edit_acc = findViewById(R.id.acc);
+        edit_pass = findViewById(R.id.pass);
+        edit_name = findViewById(R.id.edit_stuName);
+        edit_no = findViewById(R.id.edit_stuNo);
+        reg = findViewById(R.id.reg);
 
         AppDatabase database = AppDatabase.getInstance();
         final UserDao userDao = database.userDao();

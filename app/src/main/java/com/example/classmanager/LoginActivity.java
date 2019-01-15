@@ -31,11 +31,11 @@ public class LoginActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        accountEdit = (EditText)findViewById(R.id.login_account);
-        passwordEdit = (EditText)findViewById(R.id.login_password);
-        Remember = (CheckBox)findViewById(R.id.RememberPassWord);
-        login_button = (Button)findViewById(R.id.login);
-        reg_button = (Button)findViewById(R.id.register);
+        accountEdit = findViewById(R.id.login_account);
+        passwordEdit = findViewById(R.id.login_password);
+        Remember = findViewById(R.id.RememberPassWord);
+        login_button = findViewById(R.id.login);
+        reg_button = findViewById(R.id.register);
 
         final AppDatabase database = AppDatabase.getInstance();
         final UserDao userDao = database.userDao();

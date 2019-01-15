@@ -27,9 +27,9 @@ public class InfoActivity extends AppCompatActivity {
         Number = intent.getStringExtra("X2");
         Name = intent.getStringExtra("X3");
 
-        showAccount = (TextView)findViewById(R.id.show_acc);
-        showName = (TextView)findViewById(R.id.show_stuName);
-        showNo = (TextView)findViewById(R.id.show_stuNo);
+        showAccount = findViewById(R.id.show_acc);
+        showName = findViewById(R.id.show_stuName);
+        showNo = findViewById(R.id.show_stuNo);
         showAccount.setText(Account);
         showName.setText(Number);
         showNo.setText(Name);

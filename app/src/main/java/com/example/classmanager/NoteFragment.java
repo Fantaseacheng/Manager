@@ -30,10 +30,10 @@ public class NoteFragment extends Fragment {
         LayoutInflater lf = getActivity().getLayoutInflater();
         View view = lf.inflate(R.layout.fragment_note, container, false);
 
-        ImageButton addButton = (ImageButton)view.findViewById(R.id.add_note);
-        final ImageButton checkButton = (ImageButton)view.findViewById(R.id.check);
-        final TextView wancheng = (TextView)view.findViewById(R.id.wancheng);
-        final EditText editText = (EditText)view.findViewById(R.id.note);
+        ImageButton addButton = view.findViewById(R.id.add_note);
+        final ImageButton checkButton = view.findViewById(R.id.check);
+        final TextView wancheng = view.findViewById(R.id.wancheng);
+        final EditText editText = view.findViewById(R.id.note);
 
         final Bundle bundle = getArguments();
         String no = bundle.getString("E2");

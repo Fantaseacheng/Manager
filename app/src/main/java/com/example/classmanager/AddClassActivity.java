@@ -45,14 +45,14 @@ public class AddClassActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_class);
-        CNameEdit = (EditText)findViewById(R.id.name_edit);
-        CNoEdit = (EditText)findViewById(R.id.no_edit);
-        TeacherEdit = (EditText)findViewById(R.id.teacher_edit);
-        AddCourse = (Button)findViewById(R.id.addcourse_button);
-        CancelAdd = (Button)findViewById(R.id.cancel_add);
-        Week = (Spinner)findViewById(R.id.weekday_edit);
-        Time = (Spinner)findViewById(R.id.hour_edit);
-        reminder = (Switch)findViewById(R.id.reminder);
+        CNameEdit = findViewById(R.id.name_edit);
+        CNoEdit = findViewById(R.id.no_edit);
+        TeacherEdit = findViewById(R.id.teacher_edit);
+        AddCourse = findViewById(R.id.addcourse_button);
+        CancelAdd = findViewById(R.id.cancel_add);
+        Week = findViewById(R.id.weekday_edit);
+        Time = findViewById(R.id.hour_edit);
+        reminder = findViewById(R.id.reminder);
 
 
         AppDatabase database = AppDatabase.getInstance();

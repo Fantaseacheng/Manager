@@ -9,6 +9,8 @@ import android.content.Intent;
 import Alarm.AlarmReceiver;
 import Database.dao.CourseDao;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -22,6 +24,7 @@ import android.widget.Toast;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import Any.CourseAdapter;
@@ -38,51 +41,90 @@ public class MainActivity extends AppCompatActivity {
     private List<CourseEntity> coursesList= new ArrayList<>();
     private ImageButton Add;
     private NavigationView navigationView;
-    private CompositeDisposable mDisposable = new CompositeDisposable();
+    int alarm_day;
+    int alarm_hour;
+    int alarm_minute;
+    int flag;
+    PendingIntent pi;
+    long time;
+    AlarmManager am;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-/*
-        private static final int INTERVAL = 1000 * 60 * 60 * 24;// 24h
 
-//...
+        pi=PendingIntent.getBroadcast(this,0,getMsgIntent(),0);
+        time=System.currentTimeMillis();
+        am= (AlarmManager) getSystemService(ALARM_SERVICE);
 
-
-        Intent intent = new Intent(context, RequestAlarmReceiver.class);
-        PendingIntent sender = PendingIntent.getBroadcast(context,
-                REQUEST_CODE, intent, PendingIntent.FLAG_CANCEL_CURRENT);
-
-        // Schedule the alarm!
-        AlarmManager am = (AlarmManager) context
-                .getSystemService(Context.ALARM_SERVICE);
-
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.HOUR_OF_DAY, 21);
-        calendar.set(Calendar.MINUTE, 30);
-        calendar.set(Calendar.SECOND, 10);
-        calendar.set(Calendar.MILLISECOND, 0);
-
-        am.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
-                INTERVAL, sender);
-*/
-
-        AlarmManager manager = (AlarmManager) getSystemService(ALARM_SERVICE);
-        long current = System.currentTimeMillis();
-        Intent intent = new Intent();
-        intent.setAction("action.alarm");
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, intent, 0);
-        manager.setRepeating(AlarmManager.RTC_WAKEUP, current + 5000, 60000, pendingIntent);
 
         Intent i = getIntent();
         final String stuNo = i.getStringExtra("Ex3");
-        Toast.makeText(MainActivity.this,stuNo,Toast.LENGTH_SHORT).show();
         getCourse(stuNo);
+
+        if(!coursesList.isEmpty())
+        {
+            for(CourseEntity s:coursesList)
+            {
+            switch (s.getDay()){
+                case "周一":
+                    alarm_day = 2;
+                    break;
+                case "周二":
+                    alarm_day = 3;
+                    break;
+                case "周三":
+                    alarm_day = 4;
+                    break;
+                case "周四":
+                    alarm_day = 5;
+                    break;
+                case "周五":
+                    alarm_day = 6;
+                    break;
+            }
+            switch (s.getHour()){
+                case "8:00--9:35":
+                    alarm_hour = 7;
+                    break;
+                case "9:50--11:25":
+                    alarm_hour = 9;
+                    break;
+                case "2:30--4:05":
+                    alarm_hour = 14;
+                    break;
+                case "4:20--5:55":
+                    alarm_hour = 16;
+                    break;
+            }
+            switch (s.getHour()){
+                    case "8:00--9:35":
+                        alarm_minute = 50;
+                        break;
+                    case "9:50--11:25":
+                        alarm_minute = 40;
+                        break;
+                    case "2:30--4:05":
+                        alarm_minute = 20;
+                        break;
+                    case "4:20--5:55":
+                        alarm_minute = 10;
+                        break;
+                }
+                setAlarm(alarm_day,alarm_hour,alarm_minute);
+                Log.e(TAG,String.valueOf(alarm_day));
+                Log.e(TAG,String.valueOf(alarm_hour));
+                Log.e(TAG,String.valueOf(alarm_minute));
+            }
+
+        }
+
+
         CourseAdapter adapter = new CourseAdapter(MainActivity.this,R.layout.course_list,coursesList);
-        ListView listView = (ListView)findViewById(R.id.list_view);
-        Add = (ImageButton)findViewById(R.id.add_course);
+        ListView listView = findViewById(R.id.list_view);
+        Add = findViewById(R.id.add_course);
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -142,7 +184,6 @@ public class MainActivity extends AppCompatActivity {
                         intent2.setClass(MainActivity.this, LoginActivity.class);
                         startActivity(intent2);
                         break;
-
                 }
 
                 return true;
@@ -151,12 +192,29 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    private Intent getMsgIntent(){
+        Intent intent=new Intent(this,AlarmReceiver.class);
+        intent.setAction("action.alarm");
+        return intent;
+    }
+
+    private void setAlarm(int day,int hour,int minute){
+            am.setExact(AlarmManager.RTC_WAKEUP,getTimeDiff(day,hour,minute),pi);
+    }
+
+    public long getTimeDiff(int day,int hour,int minute){
+        Calendar ca=Calendar.getInstance();
+        ca.set(Calendar.DAY_OF_WEEK,day);
+        ca.set(Calendar.HOUR_OF_DAY,hour);
+        ca.set(Calendar.MINUTE,minute);
+        ca.set(Calendar.SECOND,0);
+        return ca.getTimeInMillis();
+    }
 
 
     private void getCourse(String s) {
         AppDatabase db = AppDatabase.getInstance();
         CourseDao courseDao = db.courseDao();
         coursesList.addAll(courseDao.getAll(s));
-
     }
 }
